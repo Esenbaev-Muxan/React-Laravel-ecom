@@ -7,6 +7,7 @@ import Home from './components/frontend/Home';
 import Login from './components/frontend/auth/Login';
 import Register from './components/frontend/auth/Register';
 import axios from 'axios';
+import AdminPrivateRoute from './AdminPrivateRoute';
 
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
@@ -38,10 +39,10 @@ function App() {
             {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Register />}
           </Route>
 
-          <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props} />} />
+          {/* <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props} />} /> */}
+          <AdminPrivateRoute path="/admin" name="Admin" />
 
-          {/* <Route path='/admin/dashboard' component={Dashboard} />
-          <Route path='/admin/profile' component={Profile} /> */}
+        
 
 
         </Switch>
