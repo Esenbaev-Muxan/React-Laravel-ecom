@@ -28,6 +28,7 @@ function AdminPrivateRoute({...rest}) {
    axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
         if(err.response.status === 401)
         {
+            
             swal("Unauthorized", err.response.data.message, 'warning');
             history.push('/');
         }
