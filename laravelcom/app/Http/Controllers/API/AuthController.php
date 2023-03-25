@@ -57,6 +57,8 @@ class AuthController extends Controller
             return response()->json([
                 'validation_errors'=>$validator->messages(),
             ]);
+
+            
         }
         else 
         {
