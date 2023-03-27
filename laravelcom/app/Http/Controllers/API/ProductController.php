@@ -21,9 +21,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
-        
-
         $validator = Validator::make($request->all(), [
             'category_id' =>'required|integer|max:191',
             'slug' =>'required|max:191',
@@ -33,7 +30,7 @@ class ProductController extends Controller
             'selling_price' =>'required|max:20',
             'original_price' =>'required|max:20',
             'qty' =>'required|max:4',
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -59,6 +56,16 @@ class ProductController extends Controller
             $product->original_price = $request->input('original_price');
             $product->qty = $request->input('qty');
 
+            // if($request->hasFile('image')){
+
+            //     $image = $request->image;
+                
+            //     $imagename = time().'.'.$image->getClientOriginalExtension();
+                
+            //     $request->image->move('/uploads/product/',$imagename);
+                
+            //     $product->image = $imagename;
+            // }
 
             if($request->hasFile('image'))
             {
@@ -69,9 +76,9 @@ class ProductController extends Controller
                 $product->image = 'uploads/product/'.$filename;
             }
 
-            $product->featured = $request->input('featured');
-            $product->popular = $request->input('popular');
-            $product->status = $request->input('status');
+            $product->featured = $request->input('featured') == true ? '1':'0';
+            $product->popular = $request->input('popular') == true ? '1':'0';
+            $product->status = $request->input('status') == true ? '1':'0';
 
             $product->save();
 
