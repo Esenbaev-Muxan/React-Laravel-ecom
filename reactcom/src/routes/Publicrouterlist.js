@@ -9,6 +9,7 @@ import ViewCategory from '../components/frontend/collections/ViewCategory';
 import ViewProduct from '../components/frontend/collections/ViewProduct';
 import ProductDetails from '../components/frontend/collections/ProductDetails';
 import Cart from '../components/frontend/Cart';
+import Checkout from '../components/frontend/Checkout';
 
 
 
@@ -25,6 +26,7 @@ const publicRouterList = [
     { path: '/collections/:slug', exact: true, name: 'ViewProduct', component: ViewProduct },
     { path: '/collections/:category/:product', exact: true, name: 'ProductDetails', component: ProductDetails },
     { path: '/cart', exact: true, name: 'Cart', component: Cart },
+    { path: '/checkout', exact: true, name: 'Checkout', component: Checkout },
     
 
 ];
